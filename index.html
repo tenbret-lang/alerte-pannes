@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALERTE_PANNES</title>
+
+    <script>
+        function ouvrirApplication() {
+            const params = new URLSearchParams(window.location.search);
+
+            const ref = params.get("ref") || "";
+            const nom = params.get("nom") || "";
+
+            let lien = "alertepannes://machine";
+
+            const valeurs = [];
+
+            if (ref) valeurs.push("ref=" + encodeURIComponent(ref));
+            if (nom) valeurs.push("nom=" + encodeURIComponent(nom));
+
+            if (valeurs.length > 0) {
+                lien += "?" + valeurs.join("&");
+            }
+
+            window.location.href = lien;
+        }
+
+        window.onload = function () {
+            setTimeout(ouvrirApplication, 300);
+        };
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+
+        .box {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #e87500;
+        }
+
+        button {
+            background: #e87500;
+            color: white;
+            border: none;
+            padding: 18px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>ALERTE_PANNES</h1>
+
+    <p>
+        Ouverture de la fiche de signalement de la machine…
+    </p>
+
+    <button onclick="ouvrirApplication()">
+        OUVRIR ALERTE_PANNES
+    </button>
+
+</div>
+
+</body>
+</html>
